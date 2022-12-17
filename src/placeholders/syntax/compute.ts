@@ -54,7 +54,7 @@ const evaluateToken = (
   } else if (token.type === 'bracket') {
     value = parent[evaluateToken((token as BracketToken).argument, null, data, true)]
   } else if (token.type === 'parenthese') {
-    value = parent(...(token as ParentheseToken).arguments.map(evaluateToken))
+    value = parent(...(token as ParentheseToken).arguments.map((arg) => evaluateToken(arg, null, data, true)))
   } else if (token.type === 'number') {
     value = (token as NumberToken).value
   } else if (token.type === 'string') {
